@@ -1,11 +1,8 @@
-import React from 'react'
-import MemesContainer from '../Memes/MemesContainer'
+import React from 'react';
+import MemesContainer from '../Memes/MemesContainer';
 const Layout = () => {
-  return (
-    <>
-      <MemesContainer />
-    </>
-  )
-}
+  return <MemesContainer />
+  ;
+};
 
-export default Layout
+export default Layout;

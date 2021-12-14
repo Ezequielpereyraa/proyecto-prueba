@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { array, bool } from 'prop-types';
 
 const Favorites = ({list}) => {
   console.log({list});
@@ -6,7 +7,14 @@ const Favorites = ({list}) => {
     <div className="container">
       {list}
     </div>
-  )
-}
+  );
+};
 
-export default Favorites
+Favorites.propTypes = {
+  list: array || bool
+};
+Favorites.DefaultProps ={
+  list: []
+};
+
+export default Favorites;

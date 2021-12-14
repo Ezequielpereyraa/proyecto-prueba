@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { getApi } from '../utils';
 import Memes from './Memes';
 
@@ -8,28 +8,25 @@ const MemesContainer = () => {
   const storageMemes = JSON.parse(localStorage.getItem('memes')) || [];
 
   useEffect(() => {
-    if(Boolean(storageMemes.length)) {
+    if(storageMemes.length) {
       setMemes(storageMemes);
     }else{
-      getApi.get().then(res => setMemes(res.data.memes))
-      localStorage.setItem('memes', JSON.stringify(memes))
+      getApi.get().then(res => setMemes(res.data.memes));
+      localStorage.setItem('memes', JSON.stringify(memes));
     }
-  }, [])
+  }, []);
 
-  const selectFav = (meme) =>{
-    const newMemesFav = [...memesFav, meme];
-    console.log(newMemesFav);
-    const memesDuplicate = newMemesFav.filter((item, index) =>
-      console.log(newMemesFav.indexOf(item))
-      );
-
-     setMemesFav(newMemesFav);
-     console.log({memesFav});
+  const selectFav = (selectMemeFav) =>{
+    const copyArrayMemes = [...memesFav, selectMemeFav];
+    // const removeMemesDuplicates = copyArrayMemes.reduce((allMemes, memes) => Array.from(new Set([...allMemes, memes])), []);
+    // console.log(removeMemesDuplicates);
+    setMemesFav(Array.from(new Set([...copyArrayMemes])));
     // localStorage.setItem('memesFav', JSON.stringify(memesFav));
-  }
+  };
 
-  return <Memes memes={memes} selectFav={selectFav}/>
+  console.log(memesFav);
+  return <Memes memes={memes} selectFav={selectFav}/>;
 
-}
+};
 
-export default MemesContainer
+export default MemesContainer;
